@@ -15,6 +15,9 @@
     "express": "^4.17.1",
     "url-parse": "^1.5.1"
   },
+  "engines":{
+	"node":"12.x"
+  },
   "license": "MIT",
   "devDependencies": {
     "nodemon": "^2.0.4"
