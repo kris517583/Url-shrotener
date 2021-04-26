@@ -56,7 +56,8 @@ app.post('/api/shorturl/new',urlencodedParser,function(req, res)
           db.get(index).then(value=>{res.json(value)});
         });
       }
-    });
+    })
+    .catch((error) => {res.json({error:error})});
   }
   else
   {
