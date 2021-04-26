@@ -45,6 +45,7 @@ app.post('/api/shorturl',urlencodedParser, async function(req, res)
       var index = doc.data()['index'];
       var list = doc.data()['originalurl'];
       var shorts = doc.data()['shorturls'];
+      shorturl = index;
       if(list.includes(url))
       {
         index = list.indexOf(url);
@@ -83,9 +84,9 @@ app.get('/api/shorturl/:id?', async function(req, res)
   else 
   {
     shorts = doc.data()["shorturls"];
-    if(shorts.includes(short_url))
+    if(shorts.includes(parseInt(short_url)))
     {
-        index = shorts.indexOf(short_url);
+        index = shorts.indexOf(parseInt(short_url));
         if(validUrl.isWebUri(doc.data()["originalurl"][index]))
         {
           res.redirect(doc.data()["originalurl"][index]);
