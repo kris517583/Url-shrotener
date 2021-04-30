@@ -1,4 +1,3 @@
-
 const express = require('express');
 const cors = require('cors');
 var bodyParser = require('body-parser');
@@ -11,21 +10,24 @@ admin.initializeApp({
 });
 const db = admin.firestore();
 const app = express();
+
 // Basic Configuration
 const port = process.env.PORT || 3000;
+
 app.use(cors());
 
 app.use('/public', express.static(`${process.cwd()}/public`));
 
-app.get('/', function(req, res) 
-{
+app.get('/', function(req, res) {
   res.sendFile(process.cwd() + '/views/index.html');
 });
 
-app.get('/api/hello', function(req, res) 
-{
+// Your first API endpoint
+app.get('/api/hello', function(req, res) {
   res.json({ greeting: 'hello API' });
 });
+
+
 app.post('/api/shorturl',urlencodedParser, async function(req, res) 
 {
   const collections = db.collection('urlshortner').doc('urls');
@@ -101,10 +103,13 @@ app.get('/api/shorturl/:id?', async function(req, res)
     }
   }
 });
-app.listen(port, function() 
-{
+
+app.listen(port, function() {
   console.log(`Listening on port ${port}`);
 });
+
+
+
 function shortener(length) 
 {
     var result='';
